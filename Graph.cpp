@@ -49,6 +49,7 @@ void Graph::print()
     }
 }
 
+// recursive implementation
 bool Graph::pathExistsDFS(int originNode, int destNode, std::vector<int>& visited)
 {
     auto it = std::find(visited.begin(), visited.end(), originNode);
