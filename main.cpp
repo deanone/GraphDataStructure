@@ -44,7 +44,26 @@ int main(int argc, char* argv[])
     std::vector<int> visited;
     int originNode = std::stoi(std::string(argv[1]));
     int destNode = std::stoi(std::string(argv[2]));
-    bool pathExists = graph->pathExistsDFS(originNode, destNode, visited);
+
+    std::cout << "Recursive approach\n";
+    bool pathExists = graph->pathExistsDFSRec(originNode, destNode, visited);
+    if (pathExists)
+    {
+        std::cout << "Path from node " << originNode << " to node " << destNode << "\n";
+        for (auto node : visited)
+        {
+            std::cout << node << " ";
+        }
+        std::cout << "\n";
+    }
+    else
+    {
+        std::cout << "No path between node " << originNode << " and node " << destNode << " exists.\n";
+    }
+    visited.clear();
+
+    std::cout << "Iterative approach\n";
+    pathExists = graph->pathExistsDFSIter(originNode, destNode, visited);
     if (pathExists)
     {
         std::cout << "Path from node " << originNode << " to node " << destNode << "\n";

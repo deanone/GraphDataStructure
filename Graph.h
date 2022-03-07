@@ -30,14 +30,24 @@ public:
     void print();
 
     /*!
-     * Traverses the graph with depth-first-search (DFS) in order to find a path between 
+     * Traverses the graph with depth-first search (DFS) in order to find a path between 
      * the originNode and the destNode.
      * @param originNode the origin node.
      * @param destNode the destination node.
      * @param visited the path (i.e., a series of node ids) from the origin to the destination node.
      * @return true if path exists, false otherwise.
      */
-    bool pathExistsDFS(int originNode, int destNode, std::vector<int>& visited);
+    bool pathExistsDFSRec(int originNode, int destNode, std::vector<int>& visited);
+
+    /*!
+     * Traverses the graph with depth-first search (DFS) in order to find a path between 
+     * the originNode and the destNode.
+     * @param originNode the origin node.
+     * @param destNode the destination node.
+     * @param visited the path (i.e., a series of node ids) from the origin to the destination node.
+     * @return true if path exists, false otherwise.
+     */
+    bool pathExistsDFSIter(int originNode, int destNode, std::vector<int>& visited);
 };
 
 #endif
