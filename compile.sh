@@ -1,2 +1,2 @@
 #!/bin/bash
-g++ *.cpp -std=c++17 -o graph.out
+g++ *.cpp -std=c++11 -o graph.out

@@ -31,6 +31,10 @@ public:
      */
     void printNeighbors();
 
+    /*!
+     * Returns the adjacency list of the node.
+     * @return the adjacency list of the node. 
+     */
     std::vector<int>* getNeighbors();
 };
 

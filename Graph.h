@@ -34,7 +34,7 @@ public:
      * the originNode and the destNode.
      * @param originNode the origin node.
      * @param destNode the destination node.
-     * @param visited the path (i.e., a series of node ids) from the origin to the destination node.
+     * @param visited contains the nodes that have been explored.
      * @return true if path exists, false otherwise.
      */
     bool pathExistsDFSRec(int originNode, int destNode, std::vector<int>& visited);
@@ -44,10 +44,20 @@ public:
      * the originNode and the destNode.
      * @param originNode the origin node.
      * @param destNode the destination node.
-     * @param visited the path (i.e., a series of node ids) from the origin to the destination node.
+     * @param visited contains the nodes that have been explored.
      * @return true if path exists, false otherwise.
      */
     bool pathExistsDFSIter(int originNode, int destNode, std::vector<int>& visited);
+
+    /*!
+     * Traverses the graph with breadth-first search (BFS) in order to find a path between 
+     * the originNode and the destNode.
+     * @param originNode the origin node.
+     * @param destNode the destination node.
+     * @param visited contains the nodes that have been explored.
+     * @return true if path exists, false otherwise.
+     */
+    bool pathExistsBFSIter(int originNode, int destNode, std::vector<int>& visited);
 };
 
 #endif

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <stack>
+#include <queue>
 
 Graph::Graph(std::vector<std::vector<int>> adjacencyMatrix)
 {
@@ -51,7 +52,6 @@ void Graph::print()
 }
 
 // recursive implementation
-// TODO: check if the path from originNode to destNode is returned correctly
 bool Graph::pathExistsDFSRec(int originNode, int destNode, std::vector<int>& visited)
 {
     auto it = std::find(visited.begin(), visited.end(), originNode);
@@ -70,7 +70,8 @@ bool Graph::pathExistsDFSRec(int originNode, int destNode, std::vector<int>& vis
 
     for (int i = 0; i < neighbors->size(); i++)
     {
-        if (pathExistsDFSRec((*neighbors)[i], destNode, visited))
+        int neighbor = (*neighbors)[i];
+        if (pathExistsDFSRec(neighbor, destNode, visited))
         {
             return true;
         }
@@ -79,7 +80,6 @@ bool Graph::pathExistsDFSRec(int originNode, int destNode, std::vector<int>& vis
 }
 
 // iterative implementation using stack
-// TODO: check if the path from originNode to destNode is returned correctly
 bool Graph::pathExistsDFSIter(int originNode, int destNode, std::vector<int>& visited)
 {
     std::stack<int> s;
@@ -100,7 +100,38 @@ bool Graph::pathExistsDFSIter(int originNode, int destNode, std::vector<int>& vi
             std::vector<int>* neighbors = nodes[item]->getNeighbors();
             for (int i = 0; i < neighbors->size(); i++)
             {
-                s.push((*neighbors)[i]);
+                int neighbor = (*neighbors)[i];
+                s.push(neighbor);
+            }
+        }
+    }
+    return false;
+}
+
+// iterative implementation using queue
+bool Graph::pathExistsBFSIter(int originNode, int destNode, std::vector<int>& visited)
+{
+    std::queue<int> q;
+    visited.push_back(originNode);
+    q.push(originNode);
+    while (!q.empty())
+    {
+        int item = q.front();
+        q.pop();
+        if (item == destNode)
+        {
+            return true;
+        }
+
+        std::vector<int>* neighbors = nodes[item]->getNeighbors();
+        for (int i = 0; i < neighbors->size(); i++)
+        {
+            int neighbor = (*neighbors)[i];
+            auto it = std::find(visited.begin(), visited.end(), neighbor);
+            if (it == visited.end())
+            {
+                visited.push_back(neighbor);
+                q.push(neighbor);
             }
         }
     }
